@@ -5,7 +5,7 @@ A simple, beautful and functional stopwatch for Firefox OS.
 
 1 - Visit the app page on Firefox Marketplace for your device.
 
-[https://github.com/Agneli/landstopwatch](https://github.com/Agneli/landstopwatch "LandStopwatch")
+[https://marketplace.firefox.com/app/landstopwatch/](https://marketplace.firefox.com/app/landstopwatch/ "LandStopwatch")
 
 2 - Click on Install/Free button.
 
@@ -17,6 +17,9 @@ A simple, beautful and functional stopwatch for Firefox OS.
 
 2 - Visit the app page on Firefox Marketplace for your Android with Firefox.
 
-[https://github.com/Agneli/landstopwatch](https://github.com/Agneli/landstopwatch "LandStopwatch")
+[https://marketplace.firefox.com/app/landstopwatch/](https://marketplace.firefox.com/app/landstopwatch/ "LandStopwatch")
 
 3 - Click on Install/Free button.
+
+### License
+GNU GENERAL PUBLIC LICENSE V2
