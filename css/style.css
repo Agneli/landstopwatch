@@ -22,10 +22,10 @@ table th {
     background: rgba(0, 0, 0, .7);
     border-radius: 5px;
 }
-header {
+section header {
     text-align: left;
 }
-header > a {
+section header > a {
     display: inline-block;
     width: 20%;
     padding: 10px 5px;
@@ -35,18 +35,18 @@ header > a {
     margin: 10px;
     margin-right: 0;
 }
-a.link {
+section header a.link {
     display: inline-block;
     position: absolute;
     top: 15px;
     width: 32px;
     height: 32px;
 }
-header a.link-menu {
+section header a.link-menu {
     right: 10px;
     background: url("../img/icons/menu.png") center no-repeat;
 }
-header > a:not(#start),
+section header > a:not(#start),
 table {
     display: none;
 }
@@ -58,16 +58,20 @@ main #time {
     margin: 10px 5px;
     font-size: 4.3em;
 }
-main #menu {
+main section:not(#index) {
     display: none;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .93);
+    background: rgba(0, 0, 0, .7);
 }
-main #menu > a {
+main #menu #info {
+    text-align: center;
+    margin: 50% auto 0 auto;
+}
+main #theme > a {
     display: block;
     width: 100%;
     padding: 10px 50px;
@@ -75,17 +79,41 @@ main #menu > a {
     box-sizing: border-box;
     text-align: left;
 }
-main #menu > a:first-of-type {
+main #theme > a:first-of-type {
     margin-top: 100px;
 }
-main section a.back {
-    left: 10px;
-    background: url("../img/icons/back.png") center no-repeat;
-}
-main #menu .theme {
+main #theme .theme {
     display: inline;
     width: 28%;
     margin: 2%;
     float: left;
     border: 1px solid #fff;
+}
+main #records .time {
+    overflow: hidden;
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .8));
+}
+main #records .time a {
+    display: block;
+    width: 70%;
+    height: 48px;
+    line-height: 48px;
+    vertical-align: middle;
+    padding: 0 5%;
+    text-align: left;
+    float: left;
+}
+main #records .time .trash {
+    width: 19%;
+    height: 48px;
+    background: url("../img/icons/trash.png") no-repeat center;
+    float: right;
+}
+main #records .data {
+    width: 100%;
+    display: none;
+    float: left;
+}
+.bg-black {
+    background: rgba(0, 0, 0, .5);
 }

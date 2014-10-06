@@ -6,19 +6,67 @@ $(function () {
     $("body").css("background-image", 'url("' + localStorage.bg + '")');
 
     $(".link-menu").click(function () {
+        $("section:not(#index) header").addClass("bg-black");
+        $("#menu a").css("display", "inline-block");
+        $("section:not(#index)").fadeOut();
         $("#menu").fadeIn();
-        $("body #menu").html('');
+    });
 
-        for (var i = 1; i < 10; i++) {
-            $("body #menu").append('<img class="theme" src="img/bg/' + i + '.jpg" />');
+    $(".back").click(function () {
+        $("section:not(#index) header").removeClass("bg-black");
+        $("section:not(#index)").fadeOut();
+    });
+
+    $(".link-data").click(function () {
+        $("#records header a").css("display", "inline-block");
+        $("section:not(#index)").fadeOut();
+        $("#records").fadeIn();
+        $("#records #data").html('');
+        var data = JSON.parse(localStorage.getItem("data"));
+        for (var i = 0; i < data.length; i++) {
+            $("#records #data").append("<div class='time'><a href='#!'>" + data[i]["date"] + " - " + data[i]["name"] + "</a><span class='trash' data-id='" + data[i]["id"] + "'></span><div class='data'>" + data[i]["data"] + "</div></div>");
         }
     });
 
-    $("#menu").on('click', '.theme', function () {
+    $("#records #data").on("click", ".time a", function () {
+        $(this).next().next(".data").slideToggle();
+    });
+
+    $("#records #data").click(function (e) {
+        e.stopPropagation();
+    });
+
+    $("#records #data").on("click", ".time .trash", function () {
+        var id = $(this).data("id");
+        var data = JSON.parse(localStorage.getItem("data"));
+        for (var i = 0; i < data.length; i++) {
+            if (data[i]["id"] === id) {
+                if (confirm("Are you sure?")) {
+                    if (data.splice(i, 1)) {
+                        localStorage.setItem("data", JSON.stringify(data));
+                        $(this).parent(".time").slideUp();
+                    }
+                }
+            }
+        }
+    });
+
+    $(".link-theme").click(function () {
+        $("section:not(#index)").fadeOut();
+        $("#theme").fadeIn();
+        $("body #theme").html('');
+
+        for (var i = 1; i < 10; i++) {
+            $("body #theme").append('<img class="theme" src="img/bg/' + i + '.jpg" />');
+        }
+    });
+
+    $("#theme").on('click', '.theme', function () {
         var img = $(this).attr("src");
         localStorage.setItem("bg", img);
         $("body").css("background-image", 'url("' + localStorage.bg + '")');
-        $("#menu").fadeOut();
+        $("#theme").fadeOut();
+        $("#index").fadeIn();
     });
 
     function now() {
@@ -58,27 +106,27 @@ $(function () {
     }
 
     $("#start").click(function () {
-        $("table tbody").append('<tr><td class="lap">Start</td><td>' + now() + '</td><td class="elapsed">00:00:00</td><td class="total">00:00:00</td></tr>');
+        $("#table table tbody").append('<tr><td class="lap">Start</td><td>' + now() + '</td><td class="elapsed">00:00:00</td><td class="total">00:00:00</td></tr>');
         $(this).hide();
         $("#lap, #pause, #stop, table").css("display", "inline-block");
         interval = setInterval("count();", 1000);
     });
 
     $("#lap").click(function () {
-        var lap = $("table tbody tr td.lap").last().text();
+        var lap = $("#table table tbody tr td.lap").last().text();
         if (lap === "Start") {
             lap = 0;
         }
         var newLap = parseInt(lap) + 1;
         var time = $("#time").text();
-        var total = $("table tbody tr td.total").last().text();
+        var total = $("#table table tbody tr td.total").last().text();
 
         var timeStart = new Date("30/07/2014 " + total).getTime();
         var timeEnd = new Date("30/07/2014 " + time).getTime();
 
         var elapsed = (timeEnd - timeStart);
 
-        $("table tbody").append('<tr><td class="lap">' + newLap + '</td><td>' + now() + '</td><td class="elapsed">' + msToTime(elapsed) + '</td><td class="total">' + time + '</td></tr>');
+        $("#table table tbody").append('<tr><td class="lap">' + newLap + '</td><td>' + now() + '</td><td class="elapsed">' + msToTime(elapsed) + '</td><td class="total">' + time + '</td></tr>');
     });
 
     $("#resume").click(function () {
@@ -110,14 +158,37 @@ $(function () {
     });
 
     $("#save").click(function () {
-        $(this).hide();
-        var data = $("#table").html();
 
-        var dataId = new Date();
-        dataId = dataId.getFullYear() + "-" + (dataId.getMonth() + 1) + "-" + dataId.getDate() + "-" + dataId.getHours() + "-" + dataId.getMinutes() + "-" + dataId.getSeconds();
+        var name = prompt("Save as:");
 
-        localStorage.setItem("data", "{'id':" + dataId + ", 'data':" + data + "}");
-        alert("Successfully saved!");
+        if (name !== null) {
+
+            $(this).hide();
+
+            var id = new Date();
+            id = id.getFullYear() + "-" + (id.getMonth() + 1) + "-" + id.getDate() + "-" + id.getHours() + "-" + id.getMinutes() + "-" + id.getSeconds();
+
+            var date = new Date();
+            date = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+
+            var time = $("#table").html();
+
+            if (localStorage.getItem("data") === null) {
+                var data = [];
+            } else {
+                var data = JSON.parse(localStorage.getItem("data"));
+            }
+
+            data.push({
+                'id': id,
+                'name': name,
+                'date': date,
+                'data': time,
+                'active': "y"
+            });
+            localStorage.setItem("data", JSON.stringify(data));
+            alert("Successfully saved!");
+        }
 
     });
 

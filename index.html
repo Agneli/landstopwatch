@@ -2,29 +2,30 @@
 <html>
 
 <head>
-    <title>Stopwatch</title>
+    <title>LandStopwatch</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
-    <header>
-        <a href="#!" id="start">Start</a>
-        <a href="#!" id="lap">Lap</a>
-        <a href="#!" id="resume">Resume</a>
-        <a href="#!" id="pause">Pause</a>
-        <a href="#!" id="stop">Stop</a>
-        <!--<a href="#!" id="save">Save</a>-->
-        <a href="#!" id="new">New</a>
-
-        <div>
-            <a href="#!" class="link link-menu"></a>
-        </div>
-    </header>
     <main>
 
         <section id="index">
+            <header>
+                <a href="#!" id="start">Start</a>
+                <a href="#!" id="lap">Lap</a>
+                <a href="#!" id="resume">Resume</a>
+                <a href="#!" id="pause">Pause</a>
+                <a href="#!" id="stop">Stop</a>
+                <a href="#!" id="save">Save</a>
+                <a href="#!" id="new">New</a>
+
+                <div>
+                    <a href="#!" class="link link-menu"></a>
+                </div>
+            </header>
+
             <div id="date"></div>
             <div id="time">00:00:00</div>
             <div id="table">
@@ -42,7 +43,33 @@
             </div>
         </section>
 
-        <section id="menu"></section>
+        <section id="menu">
+            <header>
+                <a href="#!" class="back">Back</a>
+                <a href="#!" class="link-data">Records</a>
+                <a href="#!" class="link-theme">Theme</a>
+            </header>
+            <div id="info">
+                <h1>
+                    <a href="http://github.com/agneli/landstopwatch" target="_blank">
+                        <img src="img/icons/icon-128.png" alt="LandStopwatch" title="LandStopwatch"><br />      
+                        LandStopwatch
+                    </a>
+                </h1>
+                <p><small>Developed by: <a href="http://github.com/agneli" target="_blank"> Raphael Agneli</a></small></p>
+            </div>
+        </section>
+
+        <section id="records">
+            <header>
+                <a href="#!" class="back">Back</a>
+                <a href="#!" class="link-data">Records</a>
+                <a href="#!" class="link-theme">Theme</a>
+            </header>
+            <div id="data"></div>
+        </section>
+
+        <section id="theme"></section>
 
     </main>
     <script type="text/javascript" src="js/jquery.js"></script>
