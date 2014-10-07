@@ -42,6 +42,10 @@ section header a.link {
     width: 32px;
     height: 32px;
 }
+section:not(#index) header > a {
+    display: none;
+    width: 24.5%;
+}
 section header a.link-menu {
     right: 10px;
     background: url("../img/icons/menu.png") center no-repeat;
@@ -69,7 +73,7 @@ main section:not(#index) {
 }
 main #menu #info {
     text-align: center;
-    margin: 50% auto 0 auto;
+    margin: 30% auto 0 auto;
 }
 main #theme > a {
     display: block;
@@ -102,6 +106,9 @@ main #records .time a {
     padding: 0 5%;
     text-align: left;
     float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 main #records .time .trash {
     width: 19%;

@@ -8,13 +8,14 @@ $(function () {
     $(".link-menu").click(function () {
         $("section:not(#index) header").addClass("bg-black");
         $("#menu a").css("display", "inline-block");
-        $("section:not(#index)").fadeOut();
+        $("section").fadeOut();
         $("#menu").fadeIn();
     });
 
     $(".back").click(function () {
         $("section:not(#index) header").removeClass("bg-black");
-        $("section:not(#index)").fadeOut();
+        $("section").fadeOut();
+        $("#index").fadeIn();
     });
 
     $(".link-data").click(function () {
